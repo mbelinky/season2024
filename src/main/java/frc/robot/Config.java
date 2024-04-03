@@ -5,7 +5,7 @@ import frc.robot.core.util.controllers.ButtonMap;
 import frc.robot.core.util.controllers.Xbox;
 import frc.robot.subsystems.pivot.PivotHardware;
 
-public class Config {
+public final class Config {
 
     public static final class Subsystems {
         public static final boolean DRIVETRAIN_ENABLED = true;
@@ -41,4 +41,17 @@ public class Config {
     public static final class Auto {
         public static final boolean IS_AUTO_OVERRIDE_SPEAKER = true;
     }
+
+  public static final Mode currentMode = Mode.REAL;
+
+  public static enum Mode {
+    /** Running on a real robot. */
+    REAL,
+
+    /** Running a physics simulator. */
+    SIM,
+
+    /** Replaying from a log file. */
+    REPLAY
+  }
 }

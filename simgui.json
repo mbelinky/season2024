@@ -1,0 +1,61 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [15]": {
+        "header": {
+          "open": true
+        }
+      },
+      "navX-Sensor[0]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/Shuffleboard/Feeder/Feeder": "Subsystem",
+      "/Shuffleboard/Pivot/Pivot": "Subsystem",
+      "/Shuffleboard/PoseEstimator Subsystem/PoseEstimator": "Subsystem",
+      "/Shuffleboard/Shooter/Shooter": "Subsystem",
+      "/Shuffleboard/Vision Subsystem/Vision": "Subsystem",
+      "/SmartDashboard/field": "Field2d"
+    }
+  },
+  "NetworkTables": {
+    "transitory": {
+      "AdvantageKit": {
+        "DriverStation": {
+          "open": true
+        },
+        "open": true
+      },
+      "Shuffleboard": {
+        "Vision Subsystem": {
+          "Vision": {
+            "open": true
+          },
+          "open": true
+        },
+        "open": true
+      },
+      "photonvision": {
+        "laser-cam": {
+          "open": true
+        },
+        "open": true
+      }
+    }
+  },
+  "NetworkTables Info": {
+    "Connections": {
+      "open": true
+    },
+    "Server": {
+      "open": true
+    },
+    "visible": true
+  }
+}

@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -28,6 +29,8 @@ import org.photonvision.PhotonUtils;
 import org.photonvision.simulation.VisionSystemSim;
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
+
+import com.ctre.phoenix6.ISerializable;
 
 public class Vision extends SubsystemBase {
   private Pose2d botPose;
@@ -209,11 +212,13 @@ public class Vision extends SubsystemBase {
       }
     }
 
-    Pose2d latestVisionPose = getCameraPrioritizedPose();
-    if(latestVisionPose != null){
-      botPose = latestVisionPose;
+    //TODO: for now, just use the isReal - further down the line we want to simulate with PV as well
+    if(RobotBase.isReal()){
+          Pose2d latestVisionPose = getCameraPrioritizedPose();
+      if(latestVisionPose != null){
+        botPose = latestVisionPose;
+      }
     }
-
     // Filtering x, y and theta
     if(isVisionEstimatePoseChanged){
       filteredVisionPose = new Pose2d(xFilter.calculate(botPose.getX()), 
@@ -251,12 +256,16 @@ public class Vision extends SubsystemBase {
         noteFieldRelativePose = new Pose2d(noteFieldRelativePose.getTranslation(), targetAngle);
       }
     }
-    photon1HasTargets = photonCam_1.getLatestResult().hasTargets();
-    photon2HasTargets = photonCam_2.getLatestResult().hasTargets();
-    photon3HasTargets = photonCam_3.getLatestResult().hasTargets();
 
+    //TODO: for now, just use the isReal - further down the line we want to simulate with PV as well
+    //more generally why are we doing this here?
+    if(RobotBase.isReal()){
+      photon1HasTargets = photonCam_1.getLatestResult().hasTargets();
+      photon2HasTargets = photonCam_2.getLatestResult().hasTargets();
+      photon3HasTargets = photonCam_3.getLatestResult().hasTargets();
+    }
   }
-
+  
   public Pose2d getCameraPrioritizedPose(){
     Pose2d newBotPose = null;
 
